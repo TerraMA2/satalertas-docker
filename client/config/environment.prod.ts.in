@@ -1,0 +1,6 @@
+export const environment = {
+  production: true,
+  terramaUrl: '%%PROTOCOL%%%%TERRAMA2_URI%%%%BASE_PATH%%adm',
+  reportServerUrl: '%%PROTOCOL%%%%SERVER_URI%%%%BASE_PATH%%alertaServer',
+  geoserverUrl: '%%PROTOCOL%%%%GEOSERVER_URI%%%%BASE_PATH%%geoserver'
+};
