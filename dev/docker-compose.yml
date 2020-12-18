@@ -1,0 +1,52 @@
+version: "3.8"
+
+networks:
+  net:
+    external:
+      name: "terrama2_net"
+
+services:
+
+ server_dev:
+   build:
+     context: .
+     dockerfile: server/Dockerfile
+   image: satalertas_server_dev
+   working_dir: /home/satalertas/app
+   container_name: "satalertas_server_dev"
+   restart: "always"
+   environment:
+     - "NODE_ENV=DEVELOPMENT"
+   volumes:
+     - "~/mydevel/sharedData:/shared-data"
+     - "~/mydevel/terrama2-report-server:/home/satalertas/app"
+   ports:
+     - "127.0.0.1:3200:3200"
+     - "127.0.0.1:5860:5858"
+   command: >
+     bash -c "sudo npm install && npm run dev"
+   networks:
+     - net
+
+ client_dev:
+   build:
+     context: .
+     dockerfile: client/Dockerfile
+   image: satalertas_client_dev
+   working_dir: /home/satalertas/app
+   container_name: "satalertas_client_dev"
+   restart: "always"
+   volumes:
+     - "~/mydevel/sharedData:/shared-data"
+     - "~/mydevel/terrama2-report:/home/satalertas/app"
+   command: >
+     bash -c "sudo npm install && ng serve --host 0.0.0.0 --port 4200"
+   ports:
+     - "0.0.0.0:4200:4200"
+     - "5861:5858"
+   networks:
+     - net
+
+volumes:
+  satalertas_documents_vol:
+  satalertas_vol:
