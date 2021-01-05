@@ -1,10 +1,9 @@
-FROM node:12
+FROM node:14
 
 ENV SATALERTAS_USER=satalertas
 ENV NODE_ENV=development
 
-RUN npm install -g @angular/cli@11 && \
-    apt update && \
+RUN apt update && \
     apt install sudo && \
     groupadd $SATALERTAS_USER && \
     useradd $SATALERTAS_USER -s /bin/bash -m -g $SATALERTAS_USER && \
