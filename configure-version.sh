@@ -24,6 +24,7 @@ for image in server/config.json.in \
         -e 's!%%COMPOSE_PROJECT_NAME%%!'"${COMPOSE_PROJECT_NAME}"'!g' \
         -e 's!%%TERRAMA2_DOCKER_REGISTRY%%!'"${TERRAMA2_DOCKER_REGISTRY}"'!g' \
         -e 's!%%TAG%%!'"${TAG}"'!g' \
+        -e 's!%%BRANCH%%!'"${BRANCH}"'!g' \
         -e 's!%%PROTOCOL%%!'"${PROTOCOL}"'!g' \
         -e 's!%%BASE_PATH%%!'"${BASE_PATH}"'!g' \
         -e 's!%%CLIENT_PORT%%!'"${CLIENT_PORT}"'!g' \
