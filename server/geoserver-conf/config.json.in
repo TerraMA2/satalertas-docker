@@ -6,6 +6,8 @@
     "datastore": "mpmt_alertas_datastore",
     "baseHost": "%%PROTOCOL%%%%GEOSERVER_URI%%%%BASE_PATH%%geoserver",
     "host": "%%PROTOCOL%%%%GEOSERVER_URI%%%%BASE_PATH%%geoserver/rest/",
+    "sridPlanet": 3857,
+    "sridTerraMa": 4674,
     "mosaic": {
       "wmsStore": {
         "name": "MosaicSpot2008",
@@ -35,6 +37,8 @@
         "styles": []
       }
     },
-    "legendUrl": "%%PROTOCOL%%%%GEOSERVER_URI%%%%BASE_PATH%%geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&legend_options=forceLabels:on&LAYER="
+    "legendUrl": "%%PROTOCOL%%%%GEOSERVER_URI%%%%BASE_PATH%%geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&legend_options=forceLabels:on&LAYER=",
+    "imgWidth": 256,
+    "imgHeigh": 256
   }
 }
