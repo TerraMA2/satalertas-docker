@@ -2,7 +2,7 @@ FROM node:12 as node
 
 WORKDIR /app
 
-RUN git clone -b b%%TAG%% -o upstream https://github.com/TerraMA2/terrama2-report.git . && \
+RUN git clone -b b%%TAG%% -o upstream https://github.com/TerraMA2/satalertas-client.git . && \
     npm install
 
 COPY config/environment.prod.ts /app/src/environments/environment.prod.ts
@@ -12,5 +12,5 @@ RUN npx ng build --prod --base-href %%BASE_PATH%%alerta/ --deploy-url %%BASE_PAT
 
 FROM nginx
 
-COPY --from=node /app/dist/terrama2-report/ /usr/share/nginx/html%%BASE_PATH%%alerta/
+COPY --from=node /app/dist/satalertas-client/ /usr/share/nginx/html%%BASE_PATH%%alerta/
 COPY config/nginx.conf /etc/nginx/conf.d/default.conf
