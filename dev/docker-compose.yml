@@ -19,7 +19,7 @@ services:
      - "NODE_ENV=DEVELOPMENT"
    volumes:
      - "~/mydevel/sharedData:/shared-data"
-     - "~/mydevel/terrama2-report-server:/home/satalertas/app"
+     - "~/mydevel/satalertas-server:/home/satalertas/app"
    ports:
      - "127.0.0.1:3200:3200"
      - "127.0.0.1:5860:5858"
@@ -38,7 +38,7 @@ services:
    restart: "always"
    volumes:
      - "~/mydevel/sharedData:/shared-data"
-     - "~/mydevel/terrama2-report:/home/satalertas/app"
+     - "~/mydevel/satalertas-client:/home/satalertas/app"
    command: >
      bash -c "sudo npm install && ng serve --host 0.0.0.0 --port 4200"
    ports:
