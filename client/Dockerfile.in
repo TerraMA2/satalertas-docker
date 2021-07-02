@@ -8,7 +8,7 @@ RUN git clone -b b%%TAG%% -o upstream https://github.com/TerraMA2/satalertas-cli
 COPY config/environment.prod.ts /app/src/environments/environment.prod.ts
 COPY config/environment.ts /app/src/environments/environment.ts
 
-RUN npx ng build --prod --base-href %%BASE_PATH%%alerta/ --deploy-url %%BASE_PATH%%alerta/
+RUN npx ng build --configuration production --base-href %%BASE_PATH%%alerta/ --deploy-url %%BASE_PATH%%alerta/
 
 FROM nginx
 
