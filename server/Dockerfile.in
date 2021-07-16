@@ -3,7 +3,7 @@ FROM node:12
 WORKDIR /app
 
 RUN apt-get update && \
-    apt-get install -y gdal-bin zip && \
+    apt-get install -y gdal-bin zip nano && \
     git clone -b b%%TAG%% -o upstream https://github.com/TerraMA2/satalertas-server.git . && \
     npm install --production
 
