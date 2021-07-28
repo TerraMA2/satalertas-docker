@@ -33,5 +33,6 @@ for image in server/config.json.in \
         -e 's!%%GEOSERVER_URI%%!'"${GEOSERVER_URI}"'!g' \
         -e 's!%%TERRAMA2_URI%%!'"${TERRAMA2_URI}"'!g' \
         -e 's!%%BACKUP_DIR%%!'"${BACKUP_DIR}"'!g' \
+        -e 's!%%QUICKCHART_PORT%%!'"${QUICKCHART_PORT}"'!g' \
       "${image}" > "${image::-3}"
 done
