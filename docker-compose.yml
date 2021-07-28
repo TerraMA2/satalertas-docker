@@ -32,6 +32,14 @@ services:
   networks:
       - net
 
+ quickchart:
+    image: ianw/quickchart
+    restart: "always"
+    ports:
+      - "0.0.0.0:${QUICKCHART_PORT}:3400"
+    networks:
+      - net
+
 volumes:
   satalertas_documents_vol:
   satalertas_vol:

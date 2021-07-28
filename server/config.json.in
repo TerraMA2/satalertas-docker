@@ -1,39 +1,19 @@
 {
-  "development": {
-    "username": "postgres",
-    "password": "postgres",
-    "database": "%%POSTGRES_DATABASE%%",
-    "host": "terrama2_pg",
-    "port": 5432,
-    "dialect": "postgres",
-    "define": {
-      "schema": "alertas"
-    },
-    "basePath": "%%BASE_PATH%%alertaServer"
-  },
-  "test": {
-    "username": "postgres",
-    "password": "postgres",
-    "database": "%%POSTGRES_DATABASE%%",
-    "host": "127.0.0.1",
-    "dialect": "postgres",
-    "port": 5432,
-    "define": {
-      "schema": "alertas"
-    },
-    "basePath": "%%BASE_PATH%%alertaServer"
-  },
   "production": {
     "username": "postgres",
     "password": "postgres",
     "database": "%%POSTGRES_DATABASE%%",
-    "host": "terrama2_pg",
+    "host": "terrama2_postgres",
     "port": 5432,
     "dialect": "postgres",
     "define": {
       "schema": "alertas"
     },
     "logging": false,
-    "basePath": "%%BASE_PATH%%alertaServer"
+    "basePath": "%%BASE_PATH%%alertaServer",
+    "chartPath": {
+      "host": "%%COMPOSE_PROJECT_NAME%%_quickchart_1:3400",
+      "protocol": "http"
+    }
   }
 }
