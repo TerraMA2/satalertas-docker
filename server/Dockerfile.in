@@ -1,9 +1,9 @@
-FROM node:12
+FROM node:12-alpine
 
 WORKDIR /app
 
-RUN apt-get update && \
-    apt-get install -y gdal-bin zip && \
+RUN apk update && \
+    apk add gdal zip git && \
     git clone -b b%%TAG%% -o upstream https://github.com/TerraMA2/satalertas-server.git . && \
     npm install --production
 
