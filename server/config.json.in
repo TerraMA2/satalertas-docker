@@ -12,7 +12,7 @@
     "logging": false,
     "basePath": "%%BASE_PATH%%alertaServer",
     "chartPath": {
-      "host": "%%COMPOSE_PROJECT_NAME%%_quickchart_1:%%QUICKCHART_PORT%%/%%COMPOSE_PROJECT_NAME%%/quickchart",
+      "host": "%%COMPOSE_PROJECT_NAME%%_quickchart_1:3400",
       "protocol": "http"
     }
   }
