@@ -2,7 +2,7 @@ FROM node:14-alpine as node
 
 WORKDIR /app
 
-RUN apk add git && \
+RUN apk add git bash && \
     git clone -b b%%TAG%% -o upstream https://github.com/TerraMA2/satalertas-client.git . && \
     npm install --silent
 
