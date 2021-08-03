@@ -16,6 +16,6 @@ server {
 
     location / {
         index index.html index.htm;
-        try_files $uri $uri/ /develop/alerta/index.html =404;
+        try_files $uri $uri/ %%BASE_PATH%%alerta/index.html =404;
     }
 }

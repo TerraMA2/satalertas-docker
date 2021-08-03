@@ -19,7 +19,8 @@ for image in server/config.json.in \
              server/Dockerfile.in \
              server/geoserver-conf/config.json.in \
              client/config/environment.prod.ts.in \
-             client/Dockerfile.in; do
+             client/Dockerfile.in \
+             client/config/nginx.conf.in; do
   sed -r \
         -e 's!%%COMPOSE_PROJECT_NAME%%!'"${COMPOSE_PROJECT_NAME}"'!g' \
         -e 's!%%TERRAMA2_DOCKER_REGISTRY%%!'"${TERRAMA2_DOCKER_REGISTRY}"'!g' \
