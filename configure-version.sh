@@ -16,11 +16,12 @@ fi
 eval $(egrep -v '^#' .env | xargs)
 
 for image in server/config.json.in \
-             server/Dockerfile.in \
-             server/geoserver-conf/config.json.in \
-             client/config/environment.prod.ts.in \
-             client/Dockerfile.in \
-             client/config/nginx.conf.in; do
+              docker-compose.yml.in \
+              server/Dockerfile.in \
+              server/geoserver-conf/config.json.in \
+              client/config/environment.prod.ts.in \
+              client/Dockerfile.in \
+              client/config/nginx.conf.in; do
   sed -r \
         -e 's!%%COMPOSE_PROJECT_NAME%%!'"${COMPOSE_PROJECT_NAME}"'!g' \
         -e 's!%%PROJECT_ID%%!'"${PROJECT_ID}"'!g' \
