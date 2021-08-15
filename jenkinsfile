@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Cloning repository..'
+                git([branch: 'b2.0.0-dev', url: 'https://github.com/TerraMA2/satalertas-docker.git'])
+                echo 'Creating .env file..'
+                sh './create-env.sh b2.0.0-dev $TAG $COMPOSE_PROJECT_NAME $PROJECT_ID $PROTOCOL $BASE_PATH $BASE_URL'
+                sh './build-images.sh'
+                sh './push.sh'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
+}
+
