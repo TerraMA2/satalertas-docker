@@ -44,7 +44,7 @@ services:
       - SERVER_URL=%%PROTOCOL%%www.terrama2.dpi.inpe.br%%BASE_PATH%%alertaServer
       - TERRAMA_URL=%%PROTOCOL%%www.terrama2.dpi.inpe.br%%BASE_PATH%%adm
       - GEOSERVER_URL=%%PROTOCOL%%www.terrama2.dpi.inpe.br%%BASE_PATH%%geoserver
-  command: sh -c "/usr/share/nginx/html/alerta/set-env.sh && nginx -g \"daemon off;\""
+  command: sh -c "/usr/share/nginx/html%%BASE_PATH%%alerta/set-env.sh && nginx -g \"daemon off;\""
   volumes:
       - "satalertas_vol:/data"
   ports:
