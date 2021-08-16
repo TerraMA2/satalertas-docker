@@ -8,7 +8,7 @@ networks:
 services:
 
  satalertas_server:
-  image: %%TERRAMA2_DOCKER_REGISTRY%%/%%COMPOSE_PROJECT_NAME%%-satalertas-server:%%TAG%%
+  image: %%TERRAMA2_DOCKER_REGISTRY%%/%%COMPOSE_PROJECT_NAME%%-satalertas-server:%%VERSION%%
   restart: "always"
   deploy:
     mode: global
@@ -29,7 +29,7 @@ services:
       - net
 
  satalertas_client:
-  image: %%TERRAMA2_DOCKER_REGISTRY%%/%%COMPOSE_PROJECT_NAME%%-satalertas-client:%%TAG%%
+  image: %%TERRAMA2_DOCKER_REGISTRY%%/%%COMPOSE_PROJECT_NAME%%-satalertas-client:%%VERSION%%
   restart: "always"
   deploy:
     mode: global
@@ -39,11 +39,11 @@ services:
       condition: on-failure
   environment:
       - PRODUCTION=true
-      - PROJECT=%%PROJECT%%
+      - PROJECT_ID=%%PROJECT_ID%%
       - BASE_PATH=%%BASE_PATH%%
-      - SERVER_URL=%%PROTOCOL%%www.terrama2.dpi.inpe.br%%BASE_PATH%%alertaServer
-      - TERRAMA_URL=%%PROTOCOL%%www.terrama2.dpi.inpe.br%%BASE_PATH%%adm
-      - GEOSERVER_URL=%%PROTOCOL%%www.terrama2.dpi.inpe.br%%BASE_PATH%%geoserver
+      - SERVER_URL=%%BASE_URL%%%%BASE_PATH%%alertaServer
+      - TERRAMA_URL=%%BASE_URL%%%%BASE_PATH%%adm
+      - GEOSERVER_URL=%%BASE_URL%%%%BASE_PATH%%geoserver
   command: sh -c "/usr/share/nginx/html%%BASE_PATH%%alerta/set-env.sh && nginx -g \"daemon off;\""
   volumes:
       - "satalertas_vol:/data"

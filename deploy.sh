@@ -7,9 +7,9 @@ echo ""
 
 eval $(egrep -v '^#' .env | xargs)
 
-./build-images.sh
+./scripts/build.sh
 
-./push.sh
+./scripts/push.sh
 
 docker-compose -f docker-compose.yml -p ${COMPOSE_PROJECT_NAME} down
 

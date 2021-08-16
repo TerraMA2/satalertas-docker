@@ -3,7 +3,7 @@ FROM node:14-alpine as node
 WORKDIR /app
 
 RUN apk add git bash && \
-    git clone -b b%%TAG%% -o upstream https://github.com/TerraMA2/satalertas-client.git . && \
+    git clone -b b%%VERSION%% -o upstream https://github.com/TerraMA2/satalertas-client.git . && \
     npm install --silent
 
 RUN npx ng build --configuration production --base-href %%BASE_PATH%%alerta/ --deploy-url %%BASE_PATH%%alerta/
