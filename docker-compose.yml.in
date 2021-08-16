@@ -37,6 +37,13 @@ services:
       delay: 10s
       max_attempts: 2
       condition: on-failure
+  environment:
+      - PRODUCTION=true
+      - PROJECT=%%COMPOSE_PROJECT_NAME%%
+      - BASE_PATH=%%BASE_PATH%%
+      - SERVER_URL=%%PROTOCOL%%www.terrama2.dpi.inpe.br%%BASE_PATH%%alertaServer
+      - TERRAMA_URL=%%PROTOCOL%%www.terrama2.dpi.inpe.br%%BASE_PATH%%adm
+      - GEOSERVER_URL=%%PROTOCOL%%www.terrama2.dpi.inpe.br%%BASE_PATH%%geoserver
   volumes:
       - "satalertas_vol:/data"
   ports:
