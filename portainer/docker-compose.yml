@@ -1,0 +1,66 @@
+version: "3.8"
+
+networks:
+  net:
+    external:
+      name: "${COMPOSE_PROJECT_NAME}_net"
+
+services:
+
+  satalertas_server:
+    image: ${TERRAMA2_DOCKER_REGISTRY}/${COMPOSE_PROJECT_NAME}-satalertas-server:${VERSION}
+    restart: "always"
+    deploy:
+      mode: global
+      restart_policy:
+        delay: 10s
+        max_attempts: 2
+        condition: on-failure
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - "satalertas_server_config_vol:/app/config/config.json"
+      - "satalertas_server_geoserver_config_vol:/app/geoserver-conf/config.json"
+      - "satalertas_documents_vol:/app/documentos"
+      - "satalertas_vol:/data"
+    ports:
+      - "0.0.0.0:${SERVER_PORT}:3200"
+    networks:
+      - net
+
+  satalertas_client:
+    image: ${TERRAMA2_DOCKER_REGISTRY}/${COMPOSE_PROJECT_NAME}-satalertas-client:${VERSION}
+    restart: "always"
+    deploy:
+      mode: global
+      restart_policy:
+        delay: 10s
+        max_attempts: 2
+        condition: on-failure
+
+    volumes:
+      - "satalertas_vol:/data"
+    ports:
+      - "0.0.0.0:${CLIENT_PORT}:80"
+    networks:
+      - net
+
+  quickchart:
+    image: ianw/quickchart
+    restart: "always"
+    deploy:
+      mode: global
+      restart_policy:
+        delay: 10s
+        max_attempts: 2
+        condition: on-failure
+    ports:
+      - "0.0.0.0:${QUICKCHART_PORT}:3400"
+    networks:
+      - net
+
+volumes:
+  satalertas_documents_vol:
+  satalertas_vol:
+  satalertas_server_config_vol:
+  satalertas_server_geoserver_config_vol:
