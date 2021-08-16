@@ -21,13 +21,6 @@ pipeline {
                 sh './scripts/push.sh'
             }
         }
-        stage('Deploy') {
-            when {
-                expression {
-                    params.DEPLOY
-                }
-            }
-        }
     }
 }
 
