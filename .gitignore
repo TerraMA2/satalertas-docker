@@ -9,6 +9,7 @@ server/Dockerfile
 server/config.json
 client/config/environment.prod.ts
 client/Dockerfile
+client/config/nginx.conf
 terrama2/Dockerfile
 webapp/Dockerfile
 webmonitor/Dockerfile
