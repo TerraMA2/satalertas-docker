@@ -23,6 +23,7 @@ for image in server/config.json.in \
               client/config/nginx.conf.in; do
   sed -r \
         -e 's!%%COMPOSE_PROJECT_NAME%%!'"${COMPOSE_PROJECT_NAME}"'!g' \
+        -e 's!%%PROJECT%%!'"${PROJECT}"'!g' \
         -e 's!%%TERRAMA2_DOCKER_REGISTRY%%!'"${TERRAMA2_DOCKER_REGISTRY}"'!g' \
         -e 's!%%TAG%%!'"${TAG}"'!g' \
         -e 's!%%PROTOCOL%%!'"${PROTOCOL}"'!g' \

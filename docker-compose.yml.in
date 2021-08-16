@@ -39,7 +39,7 @@ services:
       condition: on-failure
   environment:
       - PRODUCTION=true
-      - PROJECT=%%COMPOSE_PROJECT_NAME%%
+      - PROJECT=%%PROJECT%%
       - BASE_PATH=%%BASE_PATH%%
       - SERVER_URL=%%PROTOCOL%%www.terrama2.dpi.inpe.br%%BASE_PATH%%alertaServer
       - TERRAMA_URL=%%PROTOCOL%%www.terrama2.dpi.inpe.br%%BASE_PATH%%adm
