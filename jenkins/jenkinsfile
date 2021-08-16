@@ -4,9 +4,10 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Cloning repository..'
-                git([branch: '$TAG', url: 'https://github.com/TerraMA2/satalertas-docker.git'])
+                git([branch: 'b$TAG', url: 'https://github.com/TerraMA2/satalertas-docker.git'])
                 echo 'Creating .env file..'
                 sh './create-env.sh $TAG $COMPOSE_PROJECT_NAME $PROTOCOL $BASE_PATH $BASE_URL'
+                sh './configure-version.sh'
                 sh './build-images.sh'
                 sh './push.sh'
             }
