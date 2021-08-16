@@ -10,15 +10,19 @@ pipeline {
     }
     stages {
         stage('Build') {
-            docker.withRegistry('https://registry.hub.docker.com/', 'dockerhub') {
-                echo 'Creating .env file..'
-                sh './scripts/create-env.sh $VERSION $COMPOSE_PROJECT_NAME $PROJECT_ID $BASE_PATH $BASE_URL'
-                echo 'Generating config files..'
-                sh './scripts/generate-config.sh'
-                echo 'Building images..'
-                sh './scripts/build.sh'
-                echo 'Pushing images to the registry..'
-                sh './scripts/push.sh'
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com/', 'dockerhub') {
+                        echo 'Creating .env file..'
+                        sh './scripts/create-env.sh $VERSION $COMPOSE_PROJECT_NAME $PROJECT_ID $BASE_PATH $BASE_URL'
+                        echo 'Generating config files..'
+                        sh './scripts/generate-config.sh'
+                        echo 'Building images..'
+                        sh './scripts/build.sh'
+                        echo 'Pushing images to the registry..'
+                        sh './scripts/push.sh'
+                    }
+                }
             }
         }
     }
