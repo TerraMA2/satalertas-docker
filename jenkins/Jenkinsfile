@@ -5,7 +5,7 @@ pipeline {
         string(name: 'COMPOSE_PROJECT_NAME', defaultValue: 'develop', description: 'Compose project name (used on docker-compose "-p" parameter)')
         string(name: 'PROJECT_ID', defaultValue: 'mpmt', description: 'Project ID')
         string(name: 'BASE_URL', defaultValue: 'http://www.terrama2.dpi.inpe.br', description: 'Server url')
-        string(name: 'BASE_PATH', defaultValue: 'develop', description: 'Server URL base path')
+        string(name: 'BASE_PATH', defaultValue: '/develop/', description: 'Server URL base path')
         booleanParam(name: 'DEPLOY', defaultValue: true, description: 'Should deploy after build?')
     }
     stages {
@@ -18,9 +18,11 @@ pipeline {
                         echo 'Generating config files..'
                         sh './scripts/generate-config.sh'
                         echo 'Building images..'
-                        sh './scripts/build.sh'
+                        def clientImage = docker.build("terrama2/$COMPOSE_PROJECT_NAME-satalertas-client:$VERSION", './client')
+                        def serverImage = docker.build("terrama2/$COMPOSE_PROJECT_NAME-satalertas-server:$VERSION", './server')
                         echo 'Pushing images to the registry..'
-                        sh './scripts/push.sh'
+                        clientImage.push();
+                        serverImage.push();
                     }
                 }
             }
