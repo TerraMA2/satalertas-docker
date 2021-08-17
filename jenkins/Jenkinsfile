@@ -1,7 +1,7 @@
 pipeline {
     agent any
     parameters {
-        choice(name: 'VERSION', choices: ['master', '1.0.1', '2.0.0-dev'], description: 'Satalertas branch')
+        choice(name: 'VERSION', choices: ['2.0.0-dev', '1.0.1'], description: 'Satalertas branch')
         string(name: 'COMPOSE_PROJECT_NAME', defaultValue: 'develop', description: 'Compose project name (used on docker-compose "-p" parameter)')
         string(name: 'PROJECT_ID', defaultValue: 'mpmt', description: 'Project ID')
         string(name: 'BASE_URL', defaultValue: 'http://www.terrama2.dpi.inpe.br', description: 'Server url')
@@ -25,6 +25,17 @@ pipeline {
                         serverImage.push();
                     }
                 }
+            }
+        }
+        stage('Deploy') {
+            agent { docker { image 'python:3.8' } }
+            when {
+                expression {
+                    params.DEPLOY
+                }
+            }
+            steps {
+                sh 'python3 portainer/update-stack.PY $COMPOSE_PROJECT_NAME $VERSION $BASE_URL'
             }
         }
     }
