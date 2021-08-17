@@ -33,7 +33,12 @@ pipeline {
                     params.DEPLOY
                 }
             }
-            agent { docker { image 'python:3.8' } }
+            agent {
+                docker {
+                    image 'python:3.8'
+                    args: '-u root'
+                }
+            }
             steps {
                 sh 'pip install requests && python3 portainer/update-stack.py $COMPOSE_PROJECT_NAME $VERSION $BASE_URL'
             }
