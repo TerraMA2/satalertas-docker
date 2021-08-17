@@ -19,8 +19,6 @@ services:
     environment:
       - NODE_ENV=production
     volumes:
-      - "satalertas_server_config_vol:/app/config/config.json"
-      - "satalertas_server_geoserver_config_vol:/app/geoserver-conf/config.json"
       - "satalertas_documents_vol:/app/documentos"
       - "satalertas_vol:/data"
     ports:
@@ -62,5 +60,3 @@ services:
 volumes:
   satalertas_documents_vol:
   satalertas_vol:
-  satalertas_server_config_vol:
-  satalertas_server_geoserver_config_vol:

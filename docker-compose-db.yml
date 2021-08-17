@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+
+  postgres:
+    container_name: terrama2_postgres
+    image: postgis/postgis:11-2.5
+    restart: "unless-stopped"
+    ipc: host
+    shm_size: 128m
+    deploy:
+      mode: global
+      restart_policy:
+        delay: 10s
+        max_attempts: 2
+        condition: on-failure
+    environment:
+      - POSTGRES_PASSWORD="postgres"
+    volumes:
+      - terrama2_postgres_vol:/var/lib/postgresql/data
+    ports:
+      - "0.0.0.0:5433:5432"
+    networks:
+      - net
+
+volumes:
+  terrama2_postgres_vol:

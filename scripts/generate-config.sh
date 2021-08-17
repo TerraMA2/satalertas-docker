@@ -28,6 +28,7 @@ for file in server/config.json.in \
         -e 's!%%TERRAMA2_DOCKER_REGISTRY%%!'"${TERRAMA2_DOCKER_REGISTRY}"'!g' \
         -e 's!%%VERSION%%!'"${VERSION}"'!g' \
         -e 's!%%BASE_PATH%%!'"${BASE_PATH}"'!g' \
+        -e 's!%%BASE_URL%%!'"${BASE_URL}"'!g' \
         -e 's!%%CLIENT_PORT%%!'"${CLIENT_PORT}"'!g' \
         -e 's!%%SERVER_PORT%%!'"${SERVER_PORT}"'!g' \
         -e 's!%%POSTGRES_DATABASE%%!'"${POSTGRES_DATABASE}"'!g' \
