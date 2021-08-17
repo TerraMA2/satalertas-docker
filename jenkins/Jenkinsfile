@@ -28,14 +28,14 @@ pipeline {
             }
         }
         stage('Deploy') {
-            agent { docker { image 'python:3.8' } }
             when {
                 expression {
                     params.DEPLOY
                 }
             }
+            agent { docker { image 'python:3.8' } }
             steps {
-                sh 'python3 portainer/update-stack.PY $COMPOSE_PROJECT_NAME $VERSION $BASE_URL'
+                sh 'python3 portainer/update-stack.py $COMPOSE_PROJECT_NAME $VERSION $BASE_URL'
             }
         }
     }
