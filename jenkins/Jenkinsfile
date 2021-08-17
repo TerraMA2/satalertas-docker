@@ -35,7 +35,7 @@ pipeline {
             }
             agent { docker { image 'python:3.8' } }
             steps {
-                sh 'export PYTHONPATH=$WORKSPACE:$PYTHONPATH && python3 portainer/update-stack.py $COMPOSE_PROJECT_NAME $VERSION $BASE_URL'
+                sh 'pip install requests && python3 portainer/update-stack.py $COMPOSE_PROJECT_NAME $VERSION $BASE_URL'
             }
         }
     }
