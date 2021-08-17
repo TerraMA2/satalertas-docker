@@ -40,7 +40,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'pip install requests && python3 portainer/update-stack.py $COMPOSE_PROJECT_NAME $VERSION http://portainer:9000'
+                sh 'pip install requests && python3 portainer/update-stack.py $COMPOSE_PROJECT_NAME b$VERSION http://portainer:9000'
             }
         }
     }
