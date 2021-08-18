@@ -36,11 +36,11 @@ pipeline {
             agent {
                 docker {
                     image 'python:3.8'
-                    args '-u root --network jenkins'
+                    args '-u root --network admin-net'
                 }
             }
             steps {
-                sh 'pip install requests && python3 portainer/update-stack.py $COMPOSE_PROJECT_NAME b$VERSION $BASE_URL/portainer/'
+                sh 'pip install requests && python3 portainer/update-stack.py $COMPOSE_PROJECT_NAME_satalertas b$VERSION http://portainer:9000/'
             }
         }
     }
