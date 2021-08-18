@@ -52,12 +52,14 @@ services:
 
 networks:
   backend:
-    driver: bridge
+    driver: overlay
     internal: true
+    attachable: true
 
   frontend:
-    driver: bridge
+    driver: overlay
     internal: true
+    attachable: true
 
 volumes:
   satalertas_documents_vol:
