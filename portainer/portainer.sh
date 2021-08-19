@@ -10,7 +10,7 @@ docker network create --scope swarm --internal --attachable admin_net
 #            --network admin_net \
 #            --mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
 #            --mount type=bind,src=/var/lib/docker/volumes,dst=/var/lib/docker/volumes \
-#            -v portainer_data:/data portainer/portainer-ce:alpine
+#            -v portainer_data:/data portainer/portainer-ce:2.6.2-alpine
 
 docker service create --name=portainer -d \
                       --restart-condition=on-failure \
@@ -19,4 +19,4 @@ docker service create --name=portainer -d \
                       --network admin_net \
                       --mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
                       --mount type=bind,src=/var/lib/docker/volumes,dst=/var/lib/docker/volumes \
-                      --mount type=volume,src=portainer_data,dst=/data portainer/portainer-ce:alpine
+                      --mount type=volume,src=portainer_data,dst=/data portainer/portainer-ce:2.6.2-alpine
