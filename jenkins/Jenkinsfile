@@ -9,7 +9,7 @@ pipeline {
         booleanParam(name: 'DEPLOY', defaultValue: true, description: 'Should deploy after build?')
     }
     environment {
-        GIT_BRANCH = b{VERSION}
+        GIT_BRANCH = b${VERSION}
     }
     stages {
         stage('Build') {
