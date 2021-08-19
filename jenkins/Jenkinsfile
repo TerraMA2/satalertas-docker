@@ -9,7 +9,7 @@ pipeline {
         booleanParam(name: 'DEPLOY', defaultValue: true, description: 'Should deploy after build?')
     }
     environment {
-        GIT_BRANCH = b${VERSION}
+        GIT_BRANCH = 'b${VERSION}'
     }
     stages {
         stage('Build') {
@@ -44,7 +44,7 @@ pipeline {
             }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'portainer-admin', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    sh 'pip install requests && python3 ./portainer/update-stack.py ${COMPOSE_PROJECT_NAME}_satalertas b$VERSION http://127.0.0.1:9000 $USERNAME $PASSWORD'
+                    sh 'pip install requests && python3 ./portainer/update-stack.py ${COMPOSE_PROJECT_NAME}_satalertas b$VERSION http://portainer:9000 $USERNAME $PASSWORD'
                 }
             }
         }
