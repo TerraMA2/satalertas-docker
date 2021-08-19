@@ -22,4 +22,4 @@ docker service create --name jenkins -d \
         --mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
         --mount type=bind,src=$(which docker),dst=$(which docker) \
         --network admin_net \
-        --publish 36062:8080 jenkins/jenkins:latest-jdk11
+        --publish 36062:8080 jenkins/jenkins:2.307-jdk11
