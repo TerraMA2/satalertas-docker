@@ -42,7 +42,7 @@ pipeline {
             }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'portainer-admin', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    sh 'pip install requests && python3 ./portainer/update-stack.py {$COMPOSE_PROJECT_NAME}_satalertas b$VERSION http://portainer:9000/ $USERNAME $PASSWORD'
+                    sh 'pip install requests && python3 ./portainer/update-stack.py $COMPOSE_PROJECT_NAME_satalertas b$VERSION http://portainer:9000/ $USERNAME $PASSWORD'
                 }
             }
         }
