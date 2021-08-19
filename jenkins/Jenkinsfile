@@ -2,6 +2,7 @@ pipeline {
     agent any
     parameters {
         choice(name: 'VERSION', choices: ['2.0.0-dev', '1.0.1'], description: 'Satalertas branch')
+        choice(name: 'BRANCH_NAME', choices: ['b2.0.0-dev', 'b1.0.1'], description: 'Satalertas branch')
         string(name: 'COMPOSE_PROJECT_NAME', defaultValue: 'develop', description: 'Compose project name (used on docker-compose "-p" parameter)')
         string(name: 'PROJECT_ID', defaultValue: 'mpmt', description: 'Project ID')
         string(name: 'BASE_URL', defaultValue: 'http://www.terrama2.dpi.inpe.br', description: 'Server url')
@@ -12,11 +13,11 @@ pipeline {
         stage('Build') {
             steps {
                 script {
+                    echo 'Creating .env file..'
+                    sh './scripts/create-env.sh $VERSION $COMPOSE_PROJECT_NAME $PROJECT_ID $BASE_PATH $BASE_URL'
+                    echo 'Generating config files..'
+                    sh './scripts/generate-config.sh'
                     docker.withRegistry('https://registry.hub.docker.com/', 'dockerhub') {
-                        echo 'Creating .env file..'
-                        sh './scripts/create-env.sh $VERSION $COMPOSE_PROJECT_NAME $PROJECT_ID $BASE_PATH $BASE_URL'
-                        echo 'Generating config files..'
-                        sh './scripts/generate-config.sh'
                         echo 'Building images..'
                         def clientImage = docker.build("terrama2/$COMPOSE_PROJECT_NAME-satalertas-client:$VERSION", './client')
                         def serverImage = docker.build("terrama2/$COMPOSE_PROJECT_NAME-satalertas-server:$VERSION", './server')
@@ -36,12 +37,12 @@ pipeline {
             agent {
                 docker {
                     image 'python:3.8'
-                    args '-u root --network admin-net'
+                    args '-u root --network admin_net'
                 }
             }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'portainer-admin', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    sh 'pip install requests && python3 portainer/update-stack.py $COMPOSE_PROJECT_NAME_satalertas b$VERSION http://portainer:9000/ $USERNAME $PASSWORD'
+                    sh 'pip install requests && python3 ./portainer/update-stack.py $COMPOSE_PROJECT_NAME_satalertas b$VERSION http://portainer:9000/ $USERNAME $PASSWORD'
                 }
             }
         }

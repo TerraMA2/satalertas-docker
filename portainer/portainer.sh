@@ -1,7 +1,7 @@
 #!/bin/bash
 
 docker volume create portainer_data
-docker network create --scope swarm --internal --attachable admin_net
+docker network create --scope swarm --attachable admin_net
 
 #docker run --name=portainer -d \
 #            --restart=unless-stopped \

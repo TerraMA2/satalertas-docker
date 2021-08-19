@@ -1,7 +1,7 @@
 #!/bin/bash
 
 docker volume create jenkins_home
-docker network create --scope swarm --internal --attachable admin_net
+docker network create --scope swarm --attachable admin_net
 
 #docker run --name=jenkins -d \
 #      --privileged \

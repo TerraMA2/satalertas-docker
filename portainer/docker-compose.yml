@@ -18,7 +18,7 @@ services:
     ports:
       - "${SERVER_PORT}:3200"
     configs:
-      - source:  ${COMPOSE_PROJECT_NAME}_satalertas_server_config
+      - source: ${COMPOSE_PROJECT_NAME}_satalertas_server_config
         target: /app/config/config.json
       - source: ${COMPOSE_PROJECT_NAME}_satalertas_geoserver_config
         target: /app/geoserver-conf/config.json
@@ -58,12 +58,10 @@ services:
 networks:
   backend:
     driver: overlay
-    internal: true
     attachable: true
 
   frontend:
     driver: overlay
-    internal: true
     attachable: true
 
 configs:
