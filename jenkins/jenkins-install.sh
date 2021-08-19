@@ -14,6 +14,7 @@ docker network create --scope swarm --attachable admin_net
 #      -p 36062:8080 jenkins/jenkins:latest-jdk11
 
 docker service create --name jenkins -d \
+        --hostname=jenkins \
         --restart-condition=on-failure \
         --restart-max-attempts=2 \
         --env JENKINS_OPTS="--prefix=/jenkins" \

@@ -10,6 +10,7 @@ services:
         delay: 10s
         max_attempts: 2
         condition: on-failure
+    hostname: satalertas_server
     environment:
       - NODE_ENV=production
     volumes:
@@ -34,7 +35,7 @@ services:
         delay: 10s
         max_attempts: 2
         condition: on-failure
-
+    hostname: satalertas_client
     volumes:
       - "satalertas_vol:/data"
     ports:
@@ -50,6 +51,7 @@ services:
         delay: 10s
         max_attempts: 2
         condition: on-failure
+    hostname: satalertas_quickchart
     ports:
       - "${QUICKCHART_PORT}:3400"
     networks:

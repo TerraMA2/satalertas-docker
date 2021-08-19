@@ -13,6 +13,7 @@ docker network create --scope swarm --attachable admin_net
 #            -v portainer_data:/data portainer/portainer-ce:2.6.2-alpine
 
 docker service create --name=portainer -d \
+                      --hostname=portainer \
                       --restart-condition=on-failure \
                       --restart-max-attempts=2 \
                       --publish 36060:9000 \
