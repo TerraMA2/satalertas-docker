@@ -39,8 +39,8 @@ services:
       - PRODUCTION=true
       - PROJECT_ID=mpmt
       - BASE_PATH=/develop/
-      - SERVER_URL=http://${COMPOSE_PROJECT_NAME}_client:3200/${COMPOSE_PROJECT_NAME}/alertaServer
-      - GEOSERVER_URL=http://${COMPOSE_PROJECT_NAME}_geoserver:8080/${COMPOSE_PROJECT_NAME}/geoserver
+      - SERVER_URL=http://www.terrama2.dpi.inpe.br/${COMPOSE_PROJECT_NAME}/alertaServer
+      - GEOSERVER_URL=http://www.terrama2.dpi.inpe.br/${COMPOSE_PROJECT_NAME}/geoserver
     command: sh -c "/usr/share/nginx/html/develop/alerta/set-env.sh && nginx -g \"daemon off;\""
     hostname: satalertas_client
     volumes:
