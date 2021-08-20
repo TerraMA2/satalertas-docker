@@ -2,7 +2,7 @@ FROM node:12-alpine
 
 WORKDIR /app
 
-RUN apk add gdal zip git bash && \
+RUN apk add gdal zip git bash nano && \
     git clone -b b%%TAG%% -o upstream https://github.com/TerraMA2/satalertas-server.git . && \
     npm install --production
 
