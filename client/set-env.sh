@@ -7,6 +7,5 @@ echo "(function (window) {
     window.__env.production = ${PRODUCTION};
     window.__env.project = '${PROJECT_ID}';
     window.__env.serverUrl = '${SERVER_URL}';
-    window.__env.terramaUrl = '${TERRAMA_URL}';
     window.__env.geoserverUrl = '${GEOSERVER_URL}';
 }(this));" > env.js
