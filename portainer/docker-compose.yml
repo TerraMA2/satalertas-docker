@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
 
-  satalertas_server:
+  server:
     image: ${TERRAMA2_DOCKER_REGISTRY}/${COMPOSE_PROJECT_NAME}-satalertas-server:${VERSION}
     restart: "always"
     deploy:
@@ -27,7 +27,7 @@ services:
       - backend
       - frontend
 
-  satalertas_client:
+  client:
     image: ${TERRAMA2_DOCKER_REGISTRY}/${COMPOSE_PROJECT_NAME}-satalertas-client:${VERSION}
     restart: "always"
     deploy:
@@ -35,6 +35,13 @@ services:
         delay: 10s
         max_attempts: 2
         condition: on-failure
+    environment:
+      - PRODUCTION=true
+      - PROJECT_ID=mpmt
+      - BASE_PATH=/develop/
+      - SERVER_URL=http://${COMPOSE_PROJECT_NAME}_client:3200/${COMPOSE_PROJECT_NAME}/alertaServer
+      - GEOSERVER_URL=http://${COMPOSE_PROJECT_NAME}_geoserver:8080/${COMPOSE_PROJECT_NAME}/geoserver
+    command: sh -c "/usr/share/nginx/html/develop/alerta/set-env.sh && nginx -g \"daemon off;\""
     hostname: satalertas_client
     volumes:
       - "satalertas_vol:/data"
@@ -43,7 +50,7 @@ services:
     networks:
       - frontend
 
-  satalertas_quickchart:
+  quickchart:
     image: ianw/quickchart
     restart: "always"
     deploy:
