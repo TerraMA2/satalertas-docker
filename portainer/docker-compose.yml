@@ -4,7 +4,6 @@ services:
 
   server:
     image: ${TERRAMA2_DOCKER_REGISTRY}/${COMPOSE_PROJECT_NAME}-satalertas-server:${VERSION}
-    restart: "always"
     deploy:
       restart_policy:
         delay: 10s
@@ -19,9 +18,9 @@ services:
     ports:
       - "${SERVER_PORT}:3200"
     configs:
-      - source: ${COMPOSE_PROJECT_NAME}_satalertas_server_config
+      - source: satalertas_server_config
         target: /app/config/config.json
-      - source: ${COMPOSE_PROJECT_NAME}_satalertas_geoserver_config
+      - source: satalertas_geoserver_config
         target: /app/geoserver-conf/config.json
     networks:
       - backend
@@ -29,7 +28,6 @@ services:
 
   client:
     image: ${TERRAMA2_DOCKER_REGISTRY}/${COMPOSE_PROJECT_NAME}-satalertas-client:${VERSION}
-    restart: "always"
     deploy:
       restart_policy:
         delay: 10s
@@ -52,7 +50,6 @@ services:
 
   quickchart:
     image: ianw/quickchart
-    restart: "always"
     deploy:
       restart_policy:
         delay: 10s
@@ -74,10 +71,12 @@ networks:
     attachable: true
 
 configs:
-  develop_satalertas_server_config:
-    external: true
-  develop_satalertas_geoserver_config:
-    external: true
+  satalertas_server_config:
+    external:
+      name: "${COMPOSE_PROJECT_NAME}_satalertas_server_config"
+  satalertas_geoserver_config:
+    external:
+      name: "${COMPOSE_PROJECT_NAME}_satalertas_geoserver_config"
 
 volumes:
   satalertas_documents_vol:
