@@ -13,8 +13,7 @@ services:
     environment:
       - NODE_ENV=production
     volumes:
-      - "satalertas_documents_vol:/app/documentos"
-      - "satalertas_vol:/data"
+      - "documents_vol:/app/documentos"
     ports:
       - "${SERVER_PORT}:3200"
     configs:
@@ -41,8 +40,6 @@ services:
       - GEOSERVER_URL=http://www.terrama2.dpi.inpe.br/${COMPOSE_PROJECT_NAME}/geoserver
     command: sh -c "/usr/share/nginx/html/develop/alerta/set-env.sh && nginx -g \"daemon off;\""
     hostname: satalertas_client
-    volumes:
-      - "satalertas_vol:/data"
     ports:
       - "${CLIENT_PORT}:80"
     networks:
@@ -79,5 +76,4 @@ configs:
       name: "${COMPOSE_PROJECT_NAME}_satalertas_geoserver_config"
 
 volumes:
-  satalertas_documents_vol:
-  satalertas_vol:
+  documents_vol:
