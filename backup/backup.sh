@@ -57,10 +57,10 @@ echo "* Backup SatAlertas *"
 echo "*********************"
 echo ""
 
-if test -d "/var/lib/docker/volumes/${COMPOSE_PROJECT_NAME}_satalertas_documents_vol/_data/"; then
+if test -d "/var/lib/docker/volumes/${COMPOSE_PROJECT_NAME}_satalertas_satalertas_documents_vol/_data/"; then
     mkdir -vp ${BACKUP_DIR}/${COMPOSE_PROJECT_NAME}/satalertas
 
-    cd /var/lib/docker/volumes/${COMPOSE_PROJECT_NAME}_satalertas_documents_vol/_data/ || exit
+    cd /var/lib/docker/volumes/${COMPOSE_PROJECT_NAME}_satalertas_satalertas_documents_vol/_data/ || exit
 
     tar cvf - *.pdf | gzip -9 - > ${BACKUP_DIR}/${COMPOSE_PROJECT_NAME}/satalertas/satalertas_documents-${DATE}.tar.gz
 fi
