@@ -23,7 +23,7 @@
     "baseUrl": "%%BASE_URL%%%%BASE_PATH%%geoserver",
     "basePath": "/%%COMPOSE_PROJECT_NAME%%/",
     "baseHostDeter": "http://www.dpi.inpe.br/fipcerrado-geoserver/ows",
-    "legendUrl": "%%BASE_URL%%%%BASE_PATH%%geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&legend_options=forceLabels:on&LAYER="
+    "legendUrl": "%%BASE_URL%%%%BASE_PATH%%geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&legend_options=forceLabels:on&LAYER=",
     "workspace": "alertas",
     "datastore": "alertas_datastore",
     "planetSRID": 3857,
