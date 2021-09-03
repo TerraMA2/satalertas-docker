@@ -19,8 +19,6 @@ services:
     configs:
       - source: satalertas_server_config
         target: /app/config/config.json
-      - source: satalertas_geoserver_config
-        target: /app/geoserver-conf/config.json
     networks:
       - backend
       - frontend
@@ -71,9 +69,6 @@ configs:
   satalertas_server_config:
     external:
       name: "${COMPOSE_PROJECT_NAME}_satalertas_server_config"
-  satalertas_geoserver_config:
-    external:
-      name: "${COMPOSE_PROJECT_NAME}_satalertas_geoserver_config"
 
 volumes:
   documents_vol:

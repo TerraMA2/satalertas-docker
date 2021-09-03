@@ -19,7 +19,7 @@ eval $(egrep -v '^#' .env | xargs)
 for file in server/config.json.in \
               docker-compose.yml.in \
               server/Dockerfile.in \
-              server/geoserver-conf/config.json.in \
+              geoserver-api/config/config.json.in \
               client/Dockerfile.in \
               client/config/nginx.conf.in; do
   sed -r \

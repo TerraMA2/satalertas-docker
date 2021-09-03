@@ -20,9 +20,7 @@ services:
       - NODE_ENV=production
   volumes:
       - ./server/config.json:/app/config/config.json
-      - ./server/geoserver-conf/config.json:/app/geoserver-conf/config.json
       - "satalertas_documents_vol:/app/documentos"
-      - "satalertas_vol:/data"
   ports:
       - "0.0.0.0:%%SERVER_PORT%%:3200"
   networks:
@@ -42,11 +40,8 @@ services:
       - PROJECT_ID=%%PROJECT_ID%%
       - BASE_PATH=%%BASE_PATH%%
       - SERVER_URL=%%BASE_URL%%%%BASE_PATH%%alertaServer
-      - TERRAMA_URL=%%BASE_URL%%%%BASE_PATH%%adm
       - GEOSERVER_URL=%%BASE_URL%%%%BASE_PATH%%geoserver
   command: sh -c "/usr/share/nginx/html%%BASE_PATH%%alerta/set-env.sh && nginx -g \"daemon off;\""
-  volumes:
-      - "satalertas_vol:/data"
   ports:
       - "0.0.0.0:%%CLIENT_PORT%%:80"
   networks:
@@ -68,4 +63,3 @@ services:
 
 volumes:
   satalertas_documents_vol:
-  satalertas_vol:

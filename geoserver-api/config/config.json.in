@@ -1,0 +1,6 @@
+{
+  "basePath": "/geoserver-api",
+  "username": "admin",
+  "password": "geoserver",
+  "baseUrl": "%%BASE_URL%%"
+}

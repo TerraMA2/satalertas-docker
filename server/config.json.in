@@ -1,19 +1,34 @@
 {
-  "production": {
+  "project": "%%PROJECT_ID%%",
+  "basePath": "%%BASE_PATH%%alertaServer",
+  "chartPath": {
+    "host": "%%COMPOSE_PROJECT_NAME%%_quickchart_1:3400",
+    "protocol": "http"
+  },
+  "db": {
     "username": "postgres",
     "password": "postgres",
     "database": "%%POSTGRES_DATABASE%%",
     "host": "terrama2_postgres",
-    "port": 5432,
     "dialect": "postgres",
+    "port": 5432,
     "define": {
       "schema": "alertas"
     },
-    "logging": false,
-    "basePath": "%%BASE_PATH%%alertaServer",
-    "chartPath": {
-      "host": "%%COMPOSE_PROJECT_NAME%%_quickchart_1:3400",
-      "protocol": "http"
-    }
+    "seederStorage": "sequelize",
+    "seederStorageTableName": "SequelizeSeed"
+  },
+  "geoserver": {
+    "api": "http://geoserver_api:3300/",
+    "baseUrl": "%%BASE_URL%%%%BASE_PATH%%geoserver",
+    "basePath": "/%%COMPOSE_PROJECT_NAME%%/",
+    "baseHostDeter": "http://www.dpi.inpe.br/fipcerrado-geoserver/ows",
+    "legendUrl": "%%BASE_URL%%%%BASE_PATH%%geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&legend_options=forceLabels:on&LAYER="
+    "workspace": "alertas",
+    "datastore": "alertas_datastore",
+    "planetSRID": 3857,
+    "defaultSRID": 4674,
+    "imgWidth": 256,
+    "imgHeight": 256
   }
 }
