@@ -2,7 +2,7 @@
   "project": "%%PROJECT_ID%%",
   "basePath": "%%BASE_PATH%%alertaServer",
   "chartPath": {
-    "host": "%%COMPOSE_PROJECT_NAME%%_quickchart_1:3400",
+    "host": "quickchart:3400",
     "protocol": "http"
   },
   "db": {

@@ -47,19 +47,5 @@ services:
   networks:
       - net
 
- quickchart:
-    image: ianw/quickchart
-    restart: "always"
-    deploy:
-        mode: global
-        restart_policy:
-            delay: 10s
-            max_attempts: 2
-            condition: on-failure
-    ports:
-      - "0.0.0.0:%%QUICKCHART_PORT%%:3400"
-    networks:
-      - net
-
 volumes:
   satalertas_documents_vol:

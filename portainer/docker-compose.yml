@@ -43,19 +43,6 @@ services:
     networks:
       - frontend
 
-  quickchart:
-    image: ianw/quickchart
-    deploy:
-      restart_policy:
-        delay: 10s
-        max_attempts: 2
-        condition: on-failure
-    hostname: satalertas_quickchart
-    ports:
-      - "${QUICKCHART_PORT}:3400"
-    networks:
-      - backend
-
 networks:
   backend:
     driver: overlay
